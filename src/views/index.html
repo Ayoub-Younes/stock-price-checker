@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Stock Price Checker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Nasdaq Stock Price Checker</h1>
+    </header>
+    
+    <main>
+      <section class="info">
+        <h2>How It Works</h2>
+        <p>
+          This tool allows you to retrieve stock prices for any Nasdaq-listed company by entering the stock symbol. You can also add a like to a stock. 
+          <br /> <strong>Note:</strong> Only one like is allowed per IP address.
+        </p>
+        <p>For a full list of Nasdaq stock symbols, visit the link below:</p>
+        <a href="https://stockanalysis.com/stocks/" target="_blank">Nasdaq Stock List</a>
+      </section>
+
+      <section id="userstories" class="api-examples">
+        <h2>Example API Usage</h2>
+        <p>Use the following API endpoints to get stock data:</p>
+        <ul>
+          <li><a href="/api/stock-prices?stock=GOOG">Get data for GOOG</a></li>
+          <li><a href="/api/stock-prices?stock=GOOG&amp;like=true">Get data for GOOG and like</a></li>
+          <li><a href="/api/stock-prices?stock=GOOG&amp;stock=MSFT">Compare GOOG and MSFT</a></li>
+          <li><a href="/api/stock-prices?stock=GOOG&amp;stock=MSFT&amp;like=true">Compare GOOG and MSFT with like</a></li>
+        </ul>
+        <h3>Example API Responses</h3>
+        <pre>
+          Single Stock: {"stockData":{"stock":"GOOG","price":786.90,"likes":1}}
+        </pre>
+        <pre>
+          Comparison: {"stockData":[{"stock":"MSFT","price":62.30,"rel_likes":-1},{"stock":"GOOG","price":786.90,"rel_likes":1}]}
+        </pre>
+      </section>
+    </main>
+
+    <hr />
+
+    <section id="testui">
+      <h2>Test the API</h2>
+      <h3>Get Single Stock Price and Likes</h3>
+      <form id="testForm2">
+        <input type="text" name="stock" placeholder="Enter Stock Symbol (e.g., GOOG)" required />
+        <label><input type="checkbox" name="like" value="true" /> Like this stock?</label>
+        <button type="submit">Get Price</button>
+      </form>
+
+      <h3>Compare Two Stocks and Get Relative Likes</h3>
+      <form id="testForm">
+        <input type="text" name="stock" placeholder="First Stock (e.g., GOOG)" required />
+        <input type="text" name="stock" placeholder="Second Stock (e.g., MSFT)" required />
+        <label><input type="checkbox" name="like" value="true" /> Like both stocks?</label>
+        <button type="submit">Compare Prices</button>
+      </form>
+      <pre id="jsonResult"></pre>
+    </section>
+
+    <footer>
+      <p>This project provides a simple API to fetch stock prices and like them. It's designed for educational purposes.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
